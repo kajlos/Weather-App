@@ -8,5 +8,6 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest',
   },
+  ignorePatterns: ['webpack.config.js'],
   rules: {},
 };
