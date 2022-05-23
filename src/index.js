@@ -1,1 +1,1 @@
-console.log('Weather');
+console.log('Cool');
