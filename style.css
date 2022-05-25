@@ -3,4 +3,37 @@
 }
 body {
   min-height: 100vh;
+  margin: 0;
+  background-color: beige;
+}
+header {
+  padding: 1rem;
+  background-color: aquamarine;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+input {
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  border: none;
+  margin-bottom: 0.5rem;
+}
+label {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+button {
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 1rem;
+}
+.temp button {
+  background-color: aliceblue;
+  padding: 0.5rem 2rem;
+}
+.active {
+  font-weight: bold;
 }
