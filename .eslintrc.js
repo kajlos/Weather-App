@@ -9,5 +9,7 @@ module.exports = {
     ecmaVersion: 'latest',
   },
   ignorePatterns: ['webpack.config.js'],
-  rules: {},
+  rules: {
+    'no-unused-vars': 'warn',
+  },
 };
