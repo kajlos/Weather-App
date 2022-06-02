@@ -3,7 +3,7 @@ const tempButton = document.getElementById('tempButton');
 const API = '569b16653b1e1b0bacaf824d6467a76c';
 let tempUnit = 'celcius';
 async function getGeoLocation(city) {
-  let request = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${API}`, { mode: 'cors' });
+  let request = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${API}`, { mode: 'cors' });
   let data = await request.json();
   if (data.length == 0) {
     throw new Error('Plesase enter city name');
@@ -156,24 +156,18 @@ searchButton.addEventListener('click', () => {
     .then(weather => displayWeather(weather))
     .catch(err => console.log(err));
 });
+
 tempButton.addEventListener('click', e => {
   let temps = [...document.querySelectorAll('[data-temp]')];
+
   if (tempUnit === 'celcius') {
     tempUnit = 'fahrenheit';
     let button = e.target.closest('button');
     button.children[0].classList.remove('active');
     button.children[1].classList.add('active');
     temps.forEach(element => {
-      let oldArray = [];
-      let jjdks = element.firstChild.textContent.split('');
-      jjdks.forEach(s => {
-        let n = parseInt(s);
-        if (typeof n == 'number') oldArray.push(n);
-      });
-      let newArray = oldArray.filter(v => {
-        return !Number.isNaN(v);
-      });
-      let newTemp = celciusToFahrenheit(newArray.join(''));
+      let cleanTemp = element.textContent.replace(/[^0-9.]/g, '');
+      let newTemp = celciusToFahrenheit(cleanTemp);
       element.textContent = newTemp + '\u{B0}';
     });
   } else {
@@ -182,16 +176,8 @@ tempButton.addEventListener('click', e => {
     button.children[0].classList.add('active');
     button.children[1].classList.remove('active');
     temps.forEach(element => {
-      let oldArray = [];
-      let jjdks = element.firstChild.textContent.split('');
-      jjdks.forEach(s => {
-        let n = parseInt(s);
-        if (typeof n == 'number') oldArray.push(n);
-      });
-      let newArray = oldArray.filter(v => {
-        return !Number.isNaN(v);
-      });
-      let newTemp = fahrenheitToCelcius(newArray.join(''));
+      let cleanTemp = element.textContent.replace(/[^0-9.]/g, '');
+      let newTemp = fahrenheitToCelcius(cleanTemp);
       element.textContent = newTemp + '\u{B0}';
     });
   }
